@@ -18,7 +18,7 @@ def main(global_config, **settings):
     config.include('pyramid_formalchemy')
     config.include('fa.jquery')
 
-    config.formalchemy_admin('admin', package='pyramidapp',
+    config.formalchemy_admin('/admin', package='admin',
                              view='fa.jquery.pyramid.ModelView')
 
     return config.make_wsgi_app()

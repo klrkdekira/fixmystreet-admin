@@ -17,9 +17,13 @@ requires = [
     'waitress',
     'pyramid_formalchemy',
     'pyramid_fanstatic',
+    'pyramid_beaker',
+    'pyramid_chameleon',
     'fa.jquery',
     'gevent',
+    'wtforms',
     'gunicorn',
+    'sqlsoup',
     ]
 
 setup(name='admin',
@@ -45,6 +49,5 @@ setup(name='admin',
       [paste.app_factory]
       main = admin:main
       [console_scripts]
-      initialize_admin_db = admin.scripts.initializedb:main
       """,
       )

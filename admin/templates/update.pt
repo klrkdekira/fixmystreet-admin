@@ -1,0 +1,83 @@
+
+<!doctype html>
+<html lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <head metal:use-macro="template.macros['head']">
+  </head>
+  <body metal:use-macro="template.macros['body']">
+    <div metal:fill-slot="content">
+      <div class="row">
+	<div class="span6">
+	  <h1>Issue Details</h1>
+	  <table class="table table-bordered">
+	    <tr>
+	      <td>Reference Id</td>
+	      <td>${problem.id}</td>
+	    </tr>
+	    <tr>
+	      <td>Title</td>
+	      <td>${problem.title}</td>
+	    </tr>
+	    <tr>
+	      <td>Category</td>
+	      <td>${problem.category}</td>
+	    </tr>
+	    <tr>
+	      <td>Detail</td>
+	      <td>${problem.detail}</td>
+	    </tr>
+	    <tr>
+	      <td>Coordinates</td>
+	      <td>${problem.latitude}, ${problem.longitude}</td>
+	    </tr>
+	    <tr>
+	      <td>Image</td>
+	      <td>
+		<a href="http://aduanku.my/photo/${problem.id}.full.jpeg">
+		  <img tal:condition="problem.photo" src="http://aduanku.my/photo/${problem.id}.jpeg"/>
+		</a>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>Name</td>
+	      <td>${problem.name}</td>
+	    </tr>
+	    <tr>
+	      <td>Email</td>
+	      <td>${user.email}</td>
+	    </tr>
+	    <tr>
+	      <td>Phone</td>
+	      <td>${user.phone}</td>
+	    </tr>
+	    <tr>
+	      <td>Created at</td>
+	      <td>${problem.created}</td>
+	    </tr>
+	  </table>
+	</div>
+	<div class="span6">
+	  <h1>Update Issue</h1>
+	  <form method="POST" class="well" action="${request.url}">
+	    <fieldset>
+              <div class="control-group">
+                <div class="controls">
+		  ${form.state}
+                  <ul tal:condition="form.state.errors">
+                    <li tal:repeat="error form.state.errors">${error}</li>
+                  </ul>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-actions">
+              <button class="btn btn-large btn-primary" type="submit">Update</button>
+            </div>
+
+	  </form>
+	</div>
+
+      </div>
+      
+    </div>
+  </body>
+</html>

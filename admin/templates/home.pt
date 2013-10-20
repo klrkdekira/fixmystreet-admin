@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <head metal:use-macro="template.macros['head']">
+  </head>
+  <body metal:use-macro="template.macros['body']">
+    <div metal:fill-slot="content">
+      <h1>Issues pending action</h1>
+      <a class="btn btn-large btn-success" href="${request.route_url('status', _query={'all': 'true', 'action': 'confirm'})}">Confirm All</a>
+      <a class="btn btn-large btn-danger" href="${request.route_url('status', _query={'all': 'true', 'action': 'delete'})}">Delete All</a>
+      <table class="table table-striped table-bordered">
+	<thead>
+	  <tr>
+	    <th>Reference Id</th>
+	    <th>Title</th>
+	    <th>Photo</th>
+	    <th>Created</th>
+	    <th>Actions</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr tal:repeat="p problems">
+	    <td>${p.id}</td>
+	    <td>${p.title}</td>
+	    <td>
+	      <a href="http://aduanku.my/photo/${p.id}.full.jpeg">
+		<img tal:condition="p.photo" src="http://aduanku.my/photo/${p.id}.jpeg"/>
+	      </a>
+	    </td>
+	    <td>${p.created.strftime("%Y-%m-%d %H:%M")}</td>
+	    <td>
+	      <a href="${request.route_url('status', _query={'target': p.id, 'action': 'confirm'})}" class="btn btn-success">Confirm</a>
+	      <a href="${request.route_url('status', _query={'target': p.id, 'action': 'delete'})}" class="btn btn-danger">Delete</a>
+	      <a href="${request.route_url('update', problem_id=p.id)}" class="btn btn-primary">Update</a>
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <head metal:use-macro="template.macros['head']">
+    <style metal:fill-slot="style">
+      body {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #f5f5f5;
+      }
+
+      .form-signin {
+      max-width: 300px;
+      padding: 19px 29px 29px;
+      margin: 0 auto 20px;
+      background-color: #fff;
+      border: 1px solid #e5e5e5;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+      margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+      font-size: 16px;
+      height: auto;
+      margin-bottom: 15px;
+      padding: 7px 9px;
+      }
+    </style>
+  </head>
+  <body metal:use-macro="template.macros['body']">
+    <div metal:fill-slot="content">
+      <div class="row">
+	<div class="offset4 span4">
+          <form method="post" class="form-signin" action="${request.route_url('login')}">
+	    <h2 class="form-sigin-heading">Proceed to Login</h2>
+            <fieldset>
+              <div class="control-group">
+                <div class="controls">
+		  <input type="text" name="username" value="${form.username.data}" class="input-xlarge" placeholder="Login Id"/>
+                  <ul tal:condition="form.username.errors">
+                    <li tal:repeat="error form.username.errors">${error}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+		  <input type="password" name="password" value="${form.password.data}" class="input-xlarge" placeholder="Password"/>
+                  <ul tal:condition="form.password.errors">
+                    <li tal:repeat="error form.password.errors">${error}</li>
+                  </ul>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-actions">
+              <button class="btn btn-large btn-primary" type="submit">Login</button>
+            </div>
+          </form>	  
+	</div>
+      </div>
+    </div>
+  </body>
+</html>
